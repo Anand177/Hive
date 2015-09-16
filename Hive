@@ -1,0 +1,87 @@
+
+hive -S -e "select * from assignment1.device";
+
+
+
+hive -S -e "set" | grep warehouse;
+
+
+
+hive -S -e "select * from assignment1.device" > /home/training/Desktop/f;
+
+
+
+hive -f query.hql ;
+
+hive -f query.hql > f;
+
+source /home/training/Desktop/query.hql;   
+
+
+
+describe database assignment1;  
+
+
+
+show databases like 'a.*.1';  
+
+
+
+create database Test1 comment 'Test DB' location 'hdfs://0.0.0.0:8020/Hive/test';
+
+
+
+create database test1 with dbproperties ('A' = 'B', '1'='2');
+
+
+
+create database test1 with dbproperties ('A' = 'B', '1'='2');
+
+
+
+describe database extended test1;
+
+
+
+alter database test1 set dbproperties('3'='54');
+
+
+
+describe extended employee;
+
+describe formatted employee;
+
+
+
+show partitions employee_Partition;
+
+
+
+load data local inpath '/home/training/Downloads/NYSE_AA.csv' into table stock_part1 partition(Exchange='NYSE' , Symbol ='AA');
+
+
+
+insert into table stock_part1 partition(exchange='NYSE', symbol='AB') select Dt,Price_Close,Gain_Dollar,Gain_Percent,Dollar_Volume,Stock_Volume from stock
+where symbol='AB';    
+
+
+
+from stock                                                                                                                                                
+insert into table stock_part1 partition(exchange='NYSE', symbol='ABC') select Dt,Price_Close,Gain_Dollar,Gain_Percent,Dollar_Volume,Stock_Volume           
+where symbol='ABC'                                                                                                                              
+insert into table stock_part1 partition(exchange='NYSE', symbol='AAV') select Dt,Price_Close,Gain_Dollar,Gain_Percent,Dollar_Volume,Stock_Volume  
+where symbol='AAV';  
+
+
+
+insert into table stock_part2 partition (Exchange, Symbol) select Dt,Price_Close,Gain_Dollar,Gain_Percent,Dollar_Volume,Stock_Volume, Exchange, Symbol
+from stock where Symbol like 'X%';  
+
+
+
+show partitions stock_part2; 
+
+
+
+alter table stock_part2 add partition(exchange='BSE', Symbol ='ITC');  
+ 
